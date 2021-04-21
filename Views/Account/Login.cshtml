@@ -1,0 +1,24 @@
+ @section Styles{
+      <link rel="stylesheet" href="~/css/Login.css">
+  }
+@model  IssueTrackingSystem.Models.Account.Login;
+
+<form action="/login" method="POST" class="sign-in-form">
+        <h2 class="title">Sign in</h2>
+        <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input asp-for="EmailLog" type="text"  />
+             
+        </div>
+            <span asp-validation-for="EmailLog"></span>
+        <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input asp-for="PasswordLog"  />
+           
+        </div>
+            <span asp-validation-for="PasswordLog"></span>
+        
+        
+        <input type="submit" value="Login" id="login" class="btn solid" />
+        
+        </form>

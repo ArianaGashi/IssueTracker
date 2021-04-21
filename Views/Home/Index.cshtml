@@ -1,0 +1,75 @@
+﻿@section Styles{
+ <link rel="stylesheet" href="~/css/dashboardstyle.css" asp-append-version="true" />
+}
+
+@{
+    ViewData["Title"] = "Home Page";
+    
+}
+        <div class="filter_container">
+            <span class="filter_name">Filter</span>
+            <input type="text" id="input" class="filter_input">
+            <a href="/new" class="btn btn-new" id="new_issue">New Issue</a>
+        </div>
+        <div class="issuesContainer" id="issuesContainer">
+
+@model List<IssueTrackingSystem.Models.IssueBase.Issue>;
+            @foreach (var item in Model)
+            {   
+            <div class="issue">
+                <div class="issue_description">
+                    @if(item.Status=="Closed"){
+                        <ion-icon name="build-outline" class="nav__icon closed"></ion-icon>  
+                    }
+                    else{
+                        <ion-icon name="bug-outline" class="nav__icon open"></ion-icon>  
+                    }
+                    
+                    
+                    <a href="issue/@item.id" class="issue-title"><span >@item.Title</span></a>
+                </div>
+                <div class="issue_comments">
+                    <ion-icon name="chatbox-outline" class="nav__icon" style="width: 20px;"></ion-icon>
+                    <span class="comments_count">@item.AllComments.Count</span>
+                </div>
+                @{
+                    TimeSpan Timepassed=DateTime.UtcNow.Subtract(item.CreatedAt);
+                    var time="";
+                    if(Timepassed.Days>0)
+                    {
+                        time=Timepassed.Days+" Days ago";
+                    }
+                    else if(Timepassed.Hours>0){
+                        time=Timepassed.Hours+" Hours ago";
+                    }
+                    else if(Timepassed.Minutes>0){
+                        time=Timepassed.Minutes+" Minutes ago";
+                    } 
+                    else{
+                        time=Timepassed.Seconds+ " Seconds Ago";
+                    }
+                }
+                <div class="time">@time</div>
+            </div>
+            }
+     
+        </div>
+
+        
+        @* <div class="move">
+            <button ><ion-icon name="chevron-back-outline"></ion-icon> Previous</button>
+            <button>Next <ion-icon name="chevron-forward-outline"></ion-icon></button>
+        </div> *@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $("#input").on("change keyup paste click", function(){
+
+
+    $.get("filterIssue?name="+$(this).val(), 
+            function(data,status){
+                console.log(data);
+                $("#issuesContainer").html(data);
+
+    });
+});
+</script>

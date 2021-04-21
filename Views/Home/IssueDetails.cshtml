@@ -1,0 +1,151 @@
+
+@section Styles{
+
+    <link rel="stylesheet" href="~/css/issuedetails.css">
+}
+@* @model IssueTrackingSystem.Models.IssueBase.Issue; *@
+
+<div class="issue_info">
+      <div class="first_row">
+        <div class="issue_title">
+          @ViewBag.Issue.Title
+        </div>
+        <a href="/new" class="btn-new" id="new_issue">New Issue</a>
+      </div>
+      <div class="second_row">
+        @* To be fixed ... *@
+        @if(@ViewBag.Issue.Status=="Closed"){
+            <ion-icon identify="Closed" id="Closed" name="build-outline" class="nav__icon Closed"></ion-icon> 
+            }
+        else{
+            <ion-icon  id="Open" identify="Open" name="bug-outline" class="nav__icon Open"></ion-icon> 
+              }
+        @{
+                    TimeSpan Timepassed=DateTime.UtcNow.Subtract(@ViewBag.Issue.CreatedAt);
+                    var time="";
+                    
+                    if(Timepassed.Days>0)
+                    {
+                        time=Timepassed.Days+" Days ago";
+                    }
+                    else if(Timepassed.Hours>0){
+                        time=Timepassed.Hours+" Hours ago";
+                    }
+                    else if(Timepassed.Minutes>0){
+                        time=Timepassed.Minutes+" Minutes ago";
+                    } 
+                    else{
+                        time=Timepassed.Seconds+ " Seconds Ago";
+                    }
+                }
+        <div class="time_passed_since_posted"> @ViewBag.Issue.Host.FirstName Opened this issue @time</div>
+      </div>
+</div>
+
+<div class="helpful_info_issue">
+  <div class="comments">
+    <div class="comment_model">
+          <img
+            class="profile"
+            src="https://ui-avatars.com/api/?name=@ViewBag.Issue.Host.FirstName"
+            alt=""
+          />
+          <div class="comment_container">
+            <div class="name">@ViewBag.Issue.Host.FirstName <span> Author</span></div>
+            <div class="message">
+              @ViewBag.Issue.Description
+            </div>
+          </div>
+    </div> 
+    
+
+
+       @foreach (var item in @ViewBag.Issue.AllComments)
+       {
+           
+       
+        <div class="comment_model">
+          <img
+            class="profile"
+            src="https://ui-avatars.com/api/?name=@item.Host.FirstName"
+            alt=""
+          />
+          <div class="comment_container">
+            @{
+                    Timepassed=DateTime.UtcNow.Subtract(@item.CreatedAt);
+                    time="";
+                    if(Timepassed.Days>0)
+                    {
+                        time=Timepassed.Days+" Days ago";
+                    }
+                    else if(Timepassed.Hours>0){
+                        time=Timepassed.Hours+" Hours ago";
+                    }
+                    else if(Timepassed.Minutes>0){
+                        time=Timepassed.Minutes+" Minutes ago";
+                    } 
+                    else{
+                        time=Timepassed.Seconds+ " Seconds Ago";
+                    }
+                }
+            <div class="name">@item.Host.FirstName <span>Posted @time</span></div>
+            <div class="message">
+              @item.Description
+            </div>
+          </div>
+        </div>
+       }
+
+    @model IssueTrackingSystem.Models.IssueBase.Comments;
+ 
+    <form action="/newComment" method="POST" class="comment_model">
+            <img
+                class="profile"
+                src="https://ui-avatars.com/api/?name=@ViewBag.Name"
+                alt="ProfilePic"
+            />
+
+            <div class="comment_container">
+                <div class="write_name">
+                    <div class="name_box">Write</div>
+                </div>
+                <div class="description">
+                    <textarea
+                        asp-for="Description"
+                        id="issue_description"
+                        placeholder="Leave a comment"
+                        cols="30"
+                        rows="10"
+                    ></textarea>
+                    <span asp-validation-for="Description"></span>
+                    <button id="add_file">
+                        Attach files by dragging & dropping, selecting or pasting them.
+                    </button>
+                    <input type="file" id="attach_file" />
+                </div>
+                <button type="submit" id="submit_comment">Comment</button>
+            </div>
+            <input asp-for="IssueId" value="@ViewBag.Issue.id" hidden>
+        </form>
+
+      </div>
+    
+  
+
+    <div class="all_label_names details">
+      
+      <div class="assignees">
+        <div class="asn_title">Assigned to:</div>
+        @foreach(var item in @ViewBag.Issue.AllAssigned){
+       
+        <span>@item.Assigned.FirstName</span>
+      }
+      
+    </div>
+</div>
+</div>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/issuedetail.js"></script>

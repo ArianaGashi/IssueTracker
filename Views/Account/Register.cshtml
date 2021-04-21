@@ -1,0 +1,30 @@
+  @section Styles{
+      <link rel="stylesheet" href="~/css/Login.css">
+  }
+@model IssueTrackingSystem.Models.Account.Registration;
+
+    <form action="/register"  method="POST" class="sign-up-form">
+        <h2 class="title">Sign up</h2>
+        <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input asp-for="FirstName"  />
+            
+        </div>
+        <span asp-validation-for="FirstName"></span>
+        <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input asp-for="Email"  />
+            
+        </div>
+        <span asp-validation-for="Email"></span>
+        <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input asp-for="Password"  />
+        </div>
+        <span asp-validation-for="Password"></span>
+        <input type="submit" id="signup" class="btn" value="Sign up" />
+    </form>
+
+
+
+    

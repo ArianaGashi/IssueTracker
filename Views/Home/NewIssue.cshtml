@@ -1,0 +1,74 @@
+@section Styles{
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/newIssue.css" />
+}
+@model IssueTrackingSystem.Models.IssueBase.Issue;
+
+<form action="/new" method="POST" class="newIssue ">
+            <div class="image">
+                <img src="https://ui-avatars.com/api/?name=@ViewBag.Name" alt="ProfilePic">
+                <ion-icon name="caret-back-outline" class="icon"></ion-icon>
+            </div>
+            <div class="issue_content container">
+                <input asp-for="Title" id="issue_title" placeholder="Title">
+                <span asp-validation-for="Title"></span>
+                <div class="write_name">
+                    <div class="name_box">
+                        Write
+                    </div>
+                </div>
+                <div class="description">
+                    <textarea asp-for="Description"  id="issue_description" placeholder="Leave a comment" cols="30" rows="10"></textarea>
+                    <span asp-validation-for="Description"></span>
+                    <button  id="add_file"> Attach files by dragging & dropping, selecting or pasting them.</button>
+                    <input type="file" id="attach_file">
+                </div>
+                <button type="submit" id="submit_issue">Submit new Issue</button>
+                
+            </div>
+             <div class="issue_settings">
+                <div class="people">
+                    <a href="#" class="assignees left ">
+                    <span>Assignees</span>
+                    <ion-icon name="settings-outline" class="collapse__link"  ></ion-icon> 
+                    </a>
+                <div class="assign_people container ">
+                    <div class="assign_message">Assign people one by one</div>
+                    <input type="text" id="assign_search" class="" placeholder="Type or choose a name">
+                    <div class="assing_result ">People you can assign</div>
+                    <div class="scroll_labels people_container" id="parent">
+                        @foreach (var item in  ViewBag.Assignes)
+                        {
+                        <p  class="people_profiles " identify="@item.UserId">
+                            <img id="@item.UserId" identify="@item.UserId" src="https://ui-avatars.com/api/?name=@item.FirstName" alt="Profile Pic">
+                            <span identify="@item.UserId">@item.FirstName</span>
+                        </p> 
+                        }
+                    </div>
+                </div>
+            </div>
+               
+                <a href="#" class="labels left">
+                    <span>Labels</span>
+                    <ion-icon name="settings-outline" ></ion-icon>
+
+                </a>
+                <div class="add_labels container">
+                    <div class="guide_title">Apply labels to this issue</div>
+                    <input type="text" class="search_labels_input" placeholder="Filter Labels">
+                    <div class="scroll_labels labels_container ">
+                        @foreach(var item in ViewBag.Labels){
+                        <a href="#" id="@item.LabelId" identify="@item.LabelId">
+                            <img src="" alt="" identify="@item.LabelId">
+                            <span  identify="@item.LabelId">@item.Name</span>
+                        </a> 
+                        }
+                    </div>
+                    <a href="/label"  class="label">Add Label</a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/newissue.js"></script>

@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.issue_title {
+  color: rgb(201, 209, 217);
+  font-size: 28px;
+}
+
+.helpful_info_issue,
+.comments,
+.first_row,
+.issue_info,
+.second_row {
+  display: flex;
+}
+.issue_info {
+  padding: 2rem;
+}
+.first_row {
+  justify-content: space-between;
+  align-items: center;
+}
+.second_row {
+  justify-content: flex-start;
+  column-gap: 2rem;
+  align-items: center;
+  font-size: var(--normal-font-size);
+  color: var(--grayish-color);
+}
+.comments,
+.issue_info {
+  flex-direction: column;
+}
+.comments > * {
+  padding-bottom: 1rem;
+  border-bottom: var(--border);
+  border-width: 0.3rem;
+  
+}
+.comments{
+  width: 70%;
+  padding-right: 0;
+}
+.name {
+  background-color: rgba(1, 4, 9, 0.3);
+  padding: 1rem;
+  border-bottom: var(--border);
+}
+.name span {
+  font-size: var(--xsmall-font-size);
+  color: var(--grayish-color);
+}
+.comment_container {
+  border: var(--border);
+  border-radius: 0.5rem;
+  width: 100%;
+}
+.btn-new {
+  color: #fff;
+  background-color: var(--first-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+.Closed {
+  color: var(--closed-issue-color);
+}
+.Open {
+  color: var(--open-issue-color);
+}
+.helpful_info_issue {
+  display: flex;
+  padding: 2rem;
+}
+
+.message {
+  margin: 2rem 1rem;
+  font-size: var(--small-font-size);
+  font-style: italic;
+}
+.comment_model .profile {
+  width: 40px;
+  align-self: flex-start;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  border-radius: 100%;
+}
+.write_name {
+  border: var(--border);
+  padding: 0.5rem 1rem 0 1rem;
+}
+.name_box {
+  position: relative;
+  top: 1px;
+  width: min-content;
+  padding: 1rem 1rem;
+  border: var(--border);
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  border-bottom-color: rgb(22, 27, 34);
+  background-color: rgb(22, 27, 34);
+}
+.description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.description textarea {
+  border: 1px solid var(--filter-border-color);
+  border-radius: 0.5rem;
+  /* flex-grow: 1; */
+  margin: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(1, 4, 9, 0.5);
+  font-size: 16px;
+  color: rgb(201, 209, 217);
+  height: max-content;
+  resize: none;
+  
+  margin: 2rem 1rem 0 1rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+}
+.description textarea:focus {
+  outline-offset: 0.5px !important;
+  outline: none !important;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+  border-left: 0px !important;
+}
+.comment_model {
+  /* border: var(--border); */
+  display: flex;
+  width: 100%;
+  margin-bottom: 2rem;
+  color: rgb(201, 209, 217);
+}
+#add_file {
+  margin: 0 1rem;
+  text-align: start;
+  padding: 0.5rem;
+  border: var(--border);
+  border-top-style: dashed;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  background-color: rgb(22, 27, 34);
+  color: rgb(139, 148, 158);
+  font-size: var(--small-font-size);
+}
+#submit_comment {
+  border: var(--border);
+  height: 2.7rem;
+  width: 20%;
+  margin: 1rem;
+  align-self: flex-end;
+  background-color: var(--first-color);
+  border-radius: 0.5rem;
+  color: var(--white-color);
+
+  font-size: var(--normal-font-size);
+}
+#submit_issue:focus {
+  outline-offset: 0.5px !important;
+  outline: none !important;
+}
+#attach_file {
+  display: none;
+}
+.details {
+  flex-grow: 1;
+  justify-content: flex-start;
+}
+.assignees,.labels{
+  margin-left: 2rem;
+  color: var(--grayish-color);
+  font-size: var(--xsmall-font-size);
+}
+.asn_title,.lbl_title{
+  margin:2rem;
+}
+.assignees span{
+  border: var(--border);
+  margin:.2rem;
+  padding:.3rem;
+  color: #FFF;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.labels span{
+  border: var(--border);
+  margin:.2rem;
+  padding:.3rem;
+  color: #FFF;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+
+}

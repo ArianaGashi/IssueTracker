@@ -1,0 +1,10 @@
+  @{
+      Layout="";
+  }
+  
+  @if(@ViewBag.Issue.Status=="Closed"){
+            <a href="changestatus?status=Closed"><ion-icon identify="Closed" id="Closed" name="build-outline" class="nav__icon Closed"></ion-icon> </a> 
+            }
+else{
+            <a href="changestatus?status=Open"><ion-icon  id="Open" identify="Open" name="bug-outline" class="nav__icon Open"></ion-icon> </a> 
+              }
